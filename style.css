@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 1. SCROLL SUAVE — desplazamiento animado al hacer clic en links de navegación */
+html {
+  scroll-behavior: smooth;
+}
+
+/* EMPEZAMOS PORTAFOLIO */
+:root {
+  --principal: #0f172a;
+  --tarjeta: rgba(30, 41, 59, 0.75); /* Semi-transparente para glassmorphism */
+  --acento: #38bdf8;
+  /* 8. GRADIENTE EN EL ACENTO — reemplaza el color plano por un degradado azul→violeta */
+  --acento-gradiente: linear-gradient(135deg, #38bdf8, #818cf8);
+  --texto: #f8fafc;
+}
+
+body {
+  background-color: var(--principal);
+  color: var(--texto);
+  /* 4. FUENTE PERSONALIZADA — Inter con fallbacks por si falla la carga */
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* 9. ESTILOS BASE PARA NAV — sticky con efecto glassmorphism */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  background-color: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav a {
+  color: var(--texto);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--acento);
+}
+
+/* 9. ESTILOS BASE PARA SECCIONES — espaciado vertical consistente */
+section {
+  padding: 40px 5%;
+}
+
+/* 9. ESTILOS BASE PARA EL FORMULARIO DE CONTACTO */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form input,
+form textarea {
+  background: var(--tarjeta);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  color: var(--texto);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--acento);
+}
+
+form button {
+  background: var(--acento-gradiente);
+  color: var(--principal);
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    transform 0.2s ease;
+}
+
+form button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* PROYECTOS */
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 40px 5%;
+}
+
+/* TARJETAS */
+.tarjetas {
+  /* 7. GLASSMORPHISM — fondo semi-transparente con desenfoque del fondo */
+  background: var(--tarjeta);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* 3. SOMBRA EN TARJETAS — da profundidad visual */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  /* 10. WILL-CHANGE — avisa al navegador del hover para mejorar el rendimiento */
+  will-change: transform;
+  /* 6. ANIMACIÓN ESCALONADA — cada tarjeta hereda la animación de entrada */
+  animation: aparecer 0.6s ease-out both;
+}
+
+/* 6. ANIMACIÓN ESCALONADA — cada tarjeta aparece con un pequeño retraso progresivo */
+.tarjetas:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.tarjetas:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.tarjetas:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.tarjetas:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.tarjetas:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.tarjetas:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Animación Hover sobre tarjetas */
+.tarjetas:hover {
+  transform: translateY(-10px);
+  border-color: var(--acento);
+  /* 3. SOMBRA EN HOVER — sombra con tono del acento para resaltar */
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.25);
+}
+
+.tarjetas a {
+  display: inline-block;
+  margin-top: 10px;
+  /* 8. GRADIENTE EN TEXTO — aplica el gradiente del acento al enlace */
+  background: var(--acento-gradiente);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  font-weight: bold;
+  transition: letter-spacing 0.3s ease;
+}
+
+.tarjetas a:hover {
+  letter-spacing: 1px;
+}
+
+/* 5. ESTILOS DE FOCO — indicador visual para navegación por teclado y accesibilidad */
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Animación Keyframes para la entrada del Hero y las tarjetas */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#sobre-mi {
+  animation: aparecer 1s ease-out;
+}
+
+@media (max-width: 768px) {
+  /* El menú de navegación pasa a formato vertical */
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .proyectos-grid {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+  }
+
+  /* Ajuste del formulario para que sea simple y vertical */
+  form {
+    padding: 0 20px;
+  }
+}
