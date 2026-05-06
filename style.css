@@ -14,7 +14,7 @@ html {
   --principal: #0f172a;
   --tarjeta: rgba(30, 41, 59, 0.75); /* Semi-transparente para glassmorphism */
   --acento: #38bdf8;
-  /* 8. GRADIENTE EN EL ACENTO — reemplaza el color plano por un degradado azul→violeta */
+  /* GRADIENTE EN EL ACENTO — reemplaza el color plano por un degradado azul→violeta */
   --acento-gradiente: linear-gradient(135deg, #38bdf8, #818cf8);
   --texto: #f8fafc;
 }
@@ -22,12 +22,12 @@ html {
 body {
   background-color: var(--principal);
   color: var(--texto);
-  /* 4. FUENTE PERSONALIZADA — Inter con fallbacks por si falla la carga */
+  /* FUENTE PERSONALIZADA — Inter con fallbacks por si falla la carga */
   font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
 }
 
-/* 9. ESTILOS BASE PARA NAV — sticky con efecto glassmorphism */
+/* ESTILOS BASE PARA NAV — sticky con efecto glassmorphism */
 nav {
   display: flex;
   justify-content: center;
@@ -52,7 +52,7 @@ nav a:hover {
   color: var(--acento);
 }
 
-/* 9. ESTILOS BASE PARA SECCIONES — espaciado vertical consistente */
+/* ESTILOS BASE PARA SECCIONES — espaciado vertical consistente */
 section {
   padding: 40px 5%;
 }
@@ -122,7 +122,7 @@ section {
   font-weight: 600;
 }
 
-/* 9. ESTILOS BASE PARA EL FORMULARIO DE CONTACTO */
+/* ESTILOS BASE PARA EL FORMULARIO DE CONTACTO */
 form {
   display: flex;
   flex-direction: column;
@@ -173,31 +173,30 @@ form button:hover {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  padding: 40px 5%;
 }
 
 /* TARJETAS */
 .tarjetas {
-  /* 7. GLASSMORPHISM — fondo semi-transparente con desenfoque del fondo */
+  /* GLASSMORPHISM — fondo semi-transparente con desenfoque del fondo */
   background: var(--tarjeta);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 25px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  /* 3. SOMBRA EN TARJETAS — da profundidad visual */
+  /*  SOMBRA EN TARJETAS — da profundidad visual */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition:
     transform 0.3s ease,
     border-color 0.3s ease,
     box-shadow 0.3s ease;
-  /* 10. WILL-CHANGE — avisa al navegador del hover para mejorar el rendimiento */
+  /*  WILL-CHANGE — avisa al navegador del hover para mejorar el rendimiento */
   will-change: transform;
-  /* 6. ANIMACIÓN ESCALONADA — cada tarjeta hereda la animación de entrada */
+  /*  ANIMACIÓN ESCALONADA — cada tarjeta hereda la animación de entrada */
   animation: aparecer 0.6s ease-out both;
 }
 
-/* 6. ANIMACIÓN ESCALONADA — cada tarjeta aparece con un pequeño retraso progresivo */
+/* ANIMACIÓN ESCALONADA — cada tarjeta aparece con un pequeño retraso progresivo */
 .tarjetas:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -216,19 +215,25 @@ form button:hover {
 .tarjetas:nth-child(6) {
   animation-delay: 0.6s;
 }
+.tarjetas:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.tarjetas:nth-child(8) {
+  animation-delay: 0.8s;
+}
 
 /* Animación Hover sobre tarjetas */
 .tarjetas:hover {
   transform: translateY(-10px);
   border-color: var(--acento);
-  /* 3. SOMBRA EN HOVER — sombra con tono del acento para resaltar */
+  /* SOMBRA EN HOVER — sombra con tono del acento para resaltar */
   box-shadow: 0 8px 30px rgba(56, 189, 248, 0.25);
 }
 
 .tarjetas a {
   display: inline-block;
   margin-top: 10px;
-  /* 8. GRADIENTE EN TEXTO — aplica el gradiente del acento al enlace */
+  /* GRADIENTE EN TEXTO — aplica el gradiente del acento al enlace */
   background: var(--acento-gradiente);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -242,7 +247,7 @@ form button:hover {
   letter-spacing: 1px;
 }
 
-/* 5. ESTILOS DE FOCO — indicador visual para navegación por teclado y accesibilidad */
+/* ESTILOS DE FOCO — indicador visual para navegación por teclado y accesibilidad */
 :focus-visible {
   outline: 2px solid var(--acento);
   outline-offset: 4px;
@@ -261,8 +266,98 @@ form button:hover {
   }
 }
 
+/* HERO — sección principal con dos columnas: texto a la izquierda, ilustración a la derecha */
+/*  es lo primero que aparece al abrir el portfolio */
 #sobre-mi {
   animation: aparecer 1s ease-out;
+  /* Sin padding propio — lo maneja .hero-contenido */
+  padding: 0;
+}
+
+/* Contenedor flex que divide el Hero en dos columnas */
+/* Cómo verlo: texto e ilustración quedan lado a lado en pantallas grandes */
+.hero-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 80px 5%;
+}
+
+/* Columna izquierda: avatar, título, descripción y botones */
+.hero-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+}
+
+/* Avatar circular con borde del color acento */
+/* imagen redonda con borde azul celeste junto al título */
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--acento);
+  object-fit: cover;
+}
+
+/* Columna derecha: ilustración SVG decorativa */
+/* imagen grande a la derecha del texto en pantallas de escritorio */
+.hero-imagen img {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Contenedor de los dos botones CTA del Hero */
+/* dos botones debajo del texto — "Ver proyectos" y "GitHub" */
+.hero-botones {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Botón principal con gradiente azul→violeta */
+/* Cómo verlo: botón relleno con colores del acento, al hacer hover sube levemente */
+.btn-primario {
+  background: var(--acento-gradiente);
+  color: var(--principal);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn-primario:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+/* Botón secundario con borde sutil — estilo "ghost" */
+/* Cómo verlo: botón transparente con borde claro, al hover el borde se vuelve azul */
+.btn-secundario {
+  background: transparent;
+  color: var(--texto);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition:
+    border-color 0.3s ease,
+    transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-secundario:hover {
+  border-color: var(--acento);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -272,6 +367,26 @@ form button:hover {
     align-items: center;
     gap: 15px;
     padding: 20px;
+  }
+
+  /* Hero pasa a una sola columna — texto centrado en móvil */
+  /* Cómo verlo: reduce la ventana del navegador por debajo de 768px */
+  .hero-contenido {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 60px 5%;
+  }
+
+  /* Los botones se centran en móvil */
+  .hero-botones {
+    justify-content: center;
+  }
+
+  /* La ilustración se oculta en móvil para no ocupar espacio innecesario */
+  /* Cómo verlo: en móvil solo se ve el texto y los botones, sin la imagen */
+  .hero-imagen {
+    display: none;
   }
 
   .proyectos-grid {

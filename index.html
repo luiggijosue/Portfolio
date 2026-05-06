@@ -10,31 +10,48 @@
       rel="stylesheet"
     />
     <link
-      rel="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      href="style.css"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <title>Mi Portfolio</title>
     <link rel="stylesheet" href="style.css" />
+    <title>Portfolio | Luiggi</title>
   </head>
   <body>
     <!-- MENU DE NAVEGACION -->
     <nav>
       <a href="#sobre-mi">Sobre mí</a>
-      <a href="#proyectos">Proyectos</a>
       <a href="#habilidades">Habilidades</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <!-- HERO/SOBRE MI-->
     <section id="sobre-mi">
-      <h1>Hola, soy <span>Luiggi</span></h1>
-      <p>
-        Estudiante de Desarrollo web front-end. Me apasiona crear interfaces
-        limpias y funcionales.
-      </p>
+      <div class="hero-contenido">
+        <div class="hero-texto">
+          <img src="img/luiggi.png" alt="Avatar de Luiggi" class="avatar" />
+          <h1>Hola, soy <span>Luiggi</span></h1>
+          <p>
+            Estudiante de Desarrollo web front-end. Me apasiona crear interfaces
+            limpias y funcionales.
+          </p>
+          <div class="hero-botones">
+            <a href="#proyectos" class="btn-primario">Ver proyecto</a>
+            <a
+              href="https://github.com/luiggijosue"
+              target="_blank"
+              class="btn-secundario"
+            >
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+        <div class="hero-imagen">
+          <img src="img/ordenador.svg" alt="Ilustracion desarrollador" />
+        </div>
+      </div>
     </section>
     <!-- PROYECTOS -->
     <section id="proyectos">
@@ -140,10 +157,24 @@
     <!-- FORMULARIO DE CONTACTO -->
     <section id="contacto">
       <h2>Contacto</h2>
-      <form>
-        <input type="text" placeholder="Tu nombre" required />
-        <input type="email" placeholder="Tu email" required />
-        <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+      <form
+        action="https://formsubmit.co/luiggijosue.am@gmail.com"
+        method="post"
+      >
+        <input
+          type="hidden"
+          name="subject"
+          value="Nuevo mensaje desde tu portfolio"
+        />
+        <input type="hidden" name="captcha" value="false" />
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu email" required />
+        <textarea
+          name="mensaje"
+          placeholder="Tu mensaje"
+          rows="5"
+          required
+        ></textarea>
         <button type="submit">Enviar mensaje</button>
       </form>
     </section>
